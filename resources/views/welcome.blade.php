@@ -1,6 +1,6 @@
 @extends('template.main')
 @section('content')
-<section>
+<section class="container">
     <h1>Ajouter un genre: </h1>
     
     <form action="/genres" method="POST">
@@ -12,7 +12,7 @@
         <button class="btn btn-success" type="submit">Submit</button>
     </form>
 </section>
-<section>
+<section class="container">
     <h1>Ajouter un membre : </h1>
     <form action="/membres" method="POST">
         @csrf
@@ -35,6 +35,27 @@
 </section>
 <section class="container">
     <h1>Nos membres:</h1>
+    <table class="table table-dark">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Prenom</th>
+            <th scope="col">Nom</th>
+            <th scope="col">Genre</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+              @foreach ($DBMembre as $item)
+              <th scope="row">{{$item->id}}</th>
+              <td>{{$item->prenom}}</td>
+              <td>{{$item->nom}}</td>
+              <td>{{$item->genres->genre}}</td>
+                  
+              @endforeach
+          </tr>
+        </tbody>
+      </table>
 </section>
     
 @endsection
